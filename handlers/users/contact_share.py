@@ -1,5 +1,4 @@
 from aiogram import types
-
 from keyboards.default.order_keyboard import order_keyboard
 from loader import dp
 from data.translations import translations
@@ -8,11 +7,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 import requests
 from data.config import API_URL
-
-
-class Form(StatesGroup):
-    phone = State()
-    name = State()
+from states.form import Form
 
 
 @dp.message_handler(lambda message: message.text in ['O\'zbekcha 🇺🇿', 'English 🇺🇸'])
