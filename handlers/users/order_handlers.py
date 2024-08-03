@@ -47,6 +47,7 @@ async def go_back(callback_query: types.CallbackQuery, state: FSMContext):
 @dp.message_handler(lambda message: message.text in ["Buyurtma berish", "Place Order"])
 async def place_order(message: types.Message, state: FSMContext):
     await message.answer("Qayerga borishni xohlaysiz?", reply_markup=direction_keyboard())
+    # await message.answer(" ", reply_markup=types.ReplyKeyboardRemove())
     await OrderForm.direction.set()
 
 
