@@ -1,4 +1,6 @@
 from aiogram import types
+
+from keyboards.default.order_keyboard import order_keyboard
 from loader import dp
 from data.translations import translations
 from keyboards.default.phone import phone_keyboard
@@ -54,10 +56,10 @@ async def name_handler(message: types.Message, state: FSMContext):
     }
     resp = requests.post(url=API_URL, data=payload)
     if resp.status_code == 200:
-        await message.answer(translations[lang]['name_received'])
+        await message.answer(translations[lang]['name_received'], reply_markup=order_keyboard(lang))
     elif resp.status_code == 400:
-        await message.answer('xato emas')
+        await message.answer('xato emas', reply_markup=order_keyboard(lang))
     else:
-        await message.answer("An error occurred while saving your data. Please try again.")
+        await message.answer("An error occurred while saving your data. Please try again. \n/start")
 
     await state.finish()
